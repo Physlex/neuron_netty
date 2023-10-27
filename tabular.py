@@ -21,6 +21,9 @@ class Tabular(object):
         self._features[key] = value
         return self._features[key]
 
+    def __len__(self) -> int:
+        return len(self._features)
+
     def concat(self, rhs: Feature):
         self._features.append(rhs)
         return self

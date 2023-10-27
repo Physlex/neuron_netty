@@ -11,6 +11,14 @@ class Feature(object):
 
         pass
 
+    @property
+    def target(self):
+        return self._range
+    
+    @property
+    def inputs(self):
+        return self._domain
+
     def __getitem__(self, key: int) -> np.float64:
         assert (key < len(self._domain))
         return tuple(self._domain[key])
