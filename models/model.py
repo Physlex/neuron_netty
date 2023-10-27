@@ -1,20 +1,19 @@
+from abc import ABC
 import numpy as np
 
-class Feature(object):
-    def __init__(self, inputs: np.ndarray, target: np.float64) -> None:
+class ModelBase(ABC):
+    def __init__(self, input_features: list[np.float64], target_feature) -> None:
         self._domain = []
-        for idx in range(len(inputs)):
-            self._domain.append(np.float64(inputs[idx]))
-
-        self._range = np.float64(target)
+        for feature in input_features:
+            self._domain.append(np.float64(feature))
+        self._range = np.float64(target_feature)
         assert ( isinstance(self._range, np.float64) )
-
         pass
 
     @property
     def target(self):
         return self._range
-    
+
     @property
     def inputs(self):
         return self._domain
@@ -37,23 +36,3 @@ class Feature(object):
             func_repr += f"X{idx_x}: {self._domain[idx_x]}, "
         func_repr += f"Y0: {self._range} ) "
         return func_repr
-
-    def __mul__(self, rhs):
-        for idx in range(len(self._domain)):
-            self._domain[idx] *= rhs
-        return self
-
-    def __add__(self, rhs):
-        for idx in range(len(self._domain)):
-            self._domain[idx] += rhs
-        return self
-
-    def __sub__(self, rhs):
-        for idx in range(len(self._domain)):
-            self._domain[idx] -= rhs
-        return self
-
-    def __div__(self, rhs):
-        for idx in range(len(self._domain)):
-            self._domain[idx] /= rhs
-        return self

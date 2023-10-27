@@ -1,5 +1,5 @@
 import random, time
-from feature import Feature
+from .feature import Feature
 import numpy as np
 
 class Tabular(object):
@@ -34,7 +34,7 @@ class Tabular(object):
         for idx in range(num_examples):
             random_input = np.random.rand(num_inputs) * mean
             random_target = np.float64(random.randrange(target_min, target_max))
-            self.concat(Feature(inputs=random_input, target=random_target))
+            self.concat(Feature(random_input, random_target))
 
         return self
 

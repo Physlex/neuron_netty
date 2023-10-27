@@ -1,7 +1,7 @@
 import numpy as np
 import loss as ls
-from tabular import Tabular
-from model import LinearModel
+from models.tabular import Tabular
+from models.linear import LinearModel
 
 def gradient_descent(examples: np.ndarray, learning_rate: np.float64) -> np.ndarray:
     pass
@@ -11,6 +11,12 @@ def unit_tests() -> bool:
     ## FEATURE TESTS
 
     ## TABULAR TESTS
+    return True
+
+
+def main():
+    assert (unit_tests())
+
     examples = Tabular().rand(num_examples=10, num_inputs=4, mean=22.456, target_max=1000)
     models = []
 
@@ -21,12 +27,6 @@ def unit_tests() -> bool:
 
     examples_loss = ls.squared_diff(tabular_data=examples, linear_models=models)
     print(examples, examples_loss)
-
-    return True
-
-
-def main():
-    assert (unit_tests())
 
     pass
 
